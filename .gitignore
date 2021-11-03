@@ -19,6 +19,9 @@ tags
 # Persistent undo
 [._]*.un~
 
+nbproject
+Makefile
+.generated_files
 
 # Mac Files
 *.DS_Store
