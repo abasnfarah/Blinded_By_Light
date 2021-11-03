@@ -1,7 +1,7 @@
 
 /*
  * File:   lcd.c
- * Author: abasfarah
+ * Author: abasfarah, Eleanor, Hassan
  *
  * Created on April 22, 2020, 5:45 PM
  */
