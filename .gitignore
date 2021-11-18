@@ -24,6 +24,9 @@ nbproject/*
 Makefile
 .generated_files
 .generated_files/*
+build/*
+debug/*
+dist/*
 
 # Mac Files
 *.DS_Store
