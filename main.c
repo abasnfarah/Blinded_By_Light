@@ -49,14 +49,71 @@
 #include "lcd.h"
 #include <string.h>
 #include "asmlib.h"
+#include <stdlib.h>
+#include <math.h>
+
 volatile unsigned int overflow = 0;
+volatile double current = 2.34567;
+volatile double tareOffset = 0.0;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt (  )
 {
     overflow++;
     _T2IF = 0;
 }
 
-
+void reverse(char* str, int len)
+{
+    int i = 0, j = len - 1, temp;
+    while (i < j) {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++;
+        j--;
+    }
+}
+int intToStr(int x, char str[], int d)
+{
+    int i = 0;
+    while (x) {
+        str[i++] = (x % 10) + '0';
+        x = x / 10;
+    }
+  
+    // If number of digits required is more, then
+    // add 0s at the beginning
+    while (i < d)
+        str[i++] = '0';
+  
+    reverse(str, i);
+    str[i] = '\0';
+    return i;
+}
+  
+// Converts a floating-point/double number to a string.
+void ftoa(float n, char* res, int afterpoint)
+{
+    // Extract integer part
+    int ipart = (int)n;
+  
+    // Extract floating part
+    float fpart = n - (float)ipart;
+  
+    // convert integer part to string
+    int i = intToStr(ipart, res, 0);
+  
+    // check for display option after point
+    if (afterpoint != 0) {
+        res[i] = '.'; // add dot
+  
+        // Get the value of fraction part upto given no.
+        // of points after dot. The third parameter 
+        // is needed to handle cases like 233.007
+        fpart = fpart * pow(10, afterpoint);
+  
+        intToStr((int)fpart, res + i + 1, afterpoint);
+    }
+}
 /*
                          Main application
  */
@@ -78,6 +135,11 @@ int main(void)
     strings[7] = "8";
     strings[8] = "9";
     strings[9] = "10";
+    char output[20];
+    
+    //sprintf(output, 20,"%f",current - tareOffset);
+    float n = (float) (current);
+    ftoa(n, output, 6);
     
     while (1)
     {
@@ -85,7 +147,12 @@ int main(void)
         int input = PORTBbits.RB11;
         if(input){
             delay(50);
-            x++;
+            tareOffset = 0.04567;
+            float n = (float) (current - tareOffset);
+            ftoa(n, output, 6);
+            //char output[50];
+            //sprintf(output, 50, "%f", num);
+            
             //time = (overflow * PR2) + TMR2;
             //TMR2 = 0;
             //overflow = 0;
@@ -101,8 +168,9 @@ int main(void)
         if(x >9 ){
             x = 0;
         }
+        //sprintf(output, 8,"%f",current - tareOffset);
         lcd_setCursor(0,0);
-        lcd_printStr(strings[x]);
+        lcd_printStr(output);
         //x++;
         
         //lcd_cmd(0b00011100);
