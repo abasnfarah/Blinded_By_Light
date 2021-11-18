@@ -1,8 +1,8 @@
 /* 
- * File:   lab5_lcd.h
+ * File:   lcd.h
  * Author: abasfarah
  *
- * Created on April 22, 2020, 5:43 PM
+ * Created on November 18, 2021, 10:40 AM
  */
 
 #ifndef LCD_H
@@ -19,9 +19,10 @@ void lcd_setCursor(char x, char y);
 void lcd_printChar(char);
 void lcd_printStr(const char s[]);
 
+
 #ifdef	__cplusplus
 }
 #endif
 
-#endif	/* LAB5_LCD_H */
+#endif	/* LCD_H */
 

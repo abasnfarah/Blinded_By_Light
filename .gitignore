@@ -24,6 +24,10 @@ nbproject/*
 Makefile
 .generated_files
 .generated_files/*
+build/*
+debug/*
+dist/*
+EE3102.mc3
 
 # Mac Files
 *.DS_Store

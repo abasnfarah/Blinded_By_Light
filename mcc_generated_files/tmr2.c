@@ -92,10 +92,10 @@ void TMR2_Initialize (void)
 {
     //TMR2 0; 
     TMR2 = 0x00;
-    //Period = 8 s; Frequency = 2000000 Hz; PR2 62499; 
-    PR2 = 0xF423;
-    //TCKPS 1:256; T32 16 Bit; TON disabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
-    T2CON = 0x30;
+    //Period = 0.524288 s; Frequency = 2000000 Hz; PR2 4095; 
+    PR2 = 0xFFF;
+    //TCKPS 1:256; T32 16 Bit; TON enabled; TSIDL disabled; TCS FOSC/2; TGATE disabled; 
+    T2CON = 0x8030;
 
     if(TMR2_InterruptHandler == NULL)
     {
@@ -110,25 +110,25 @@ void TMR2_Initialize (void)
 }
 
 
-void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt (  )
-{
+//void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt (  )
+//{
     /* Check if the Timer Interrupt/Status is set */
 
     //***User Area Begin
 
     // ticker function call;
     // ticker is 1 -> Callback function gets called everytime this ISR executes
-    if(TMR2_InterruptHandler) 
-    { 
-           TMR2_InterruptHandler(); 
-    }
+    //if(TMR2_InterruptHandler) 
+    //{ 
+    //       TMR2_InterruptHandler(); 
+    //}
 
     //***User Area End
 
-    tmr2_obj.count++;
-    tmr2_obj.timerElapsed = true;
-    IFS0bits.T2IF = false;
-}
+    //tmr2_obj.count++;
+    //tmr2_obj.timerElapsed = true;
+    //IFS0bits.T2IF = false;
+//}
 
 void TMR2_Period16BitSet( uint16_t value )
 {

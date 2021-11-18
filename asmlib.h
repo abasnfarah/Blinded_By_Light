@@ -1,8 +1,8 @@
 /* 
- * File:   lab5_asmlib.h
+ * File:   asmlib.h
  * Author: abasfarah
  *
- * Created on April 22, 2020, 5:50 PM
+ * Created on November 18, 2021, 10:38 AM
  */
 
 #ifndef ASMLIB_H
@@ -20,5 +20,5 @@ void wait_1ms(void);
 }
 #endif
 
-#endif	/* LAB5_ASMLIB_H */
+#endif	/* ASMLIB_H */
 
