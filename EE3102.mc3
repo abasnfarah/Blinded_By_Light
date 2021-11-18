@@ -4708,11 +4708,11 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR2" name="actualPeriod"/>
-         <value>8</value>
+         <value>0.524288</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR2" name="callBackRate"/>
-         <value>8</value>
+         <value>0.524288</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR2" name="clockSourceSelect"/>
@@ -4724,7 +4724,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR2" name="customPR"/>
-         <value>62499</value>
+         <value>4095</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR2" name="inputMode"/>
@@ -4828,7 +4828,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR2" registerAlias="PR"/>
-         <value>62499</value>
+         <value>4095</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR2" registerAlias="PR32"/>
@@ -4836,7 +4836,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR2" registerAlias="TCON"/>
-         <value>48</value>
+         <value>32816</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR2" registerAlias="TMR"/>
@@ -4848,7 +4848,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR2" registerAlias="PR" settingAlias="PR"/>
-         <value>62499</value>
+         <value>4095</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR2" registerAlias="PR32" settingAlias="PR32"/>
@@ -4872,7 +4872,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR2" registerAlias="TCON" settingAlias="TON"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR2" registerAlias="TCON" settingAlias="TSIDL"/>
@@ -5061,6 +5061,10 @@
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="UART1" registerAlias="UMODE" settingAlias="UEN" alias="TX_RX_CTS_RTS"/>
          <value>2</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="UART1" registerAlias="UMODE" settingAlias="UEN" alias="TX_RX_RTS"/>
+         <value>1</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="UART1" registerAlias="UMODE" settingAlias="URXINV" alias="disabled"/>
@@ -5410,7 +5414,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/system.c</file>
-         <hash>7c8d3554c2d09e895af0713888d562002f0b7be947fbffbfa5ec429dbfbbcd2c</hash>
+         <hash>4548bec899589af63c409b87511f8a62613e9d794a085949a755c69a0fdc79ce</hash>
       </entry>
       <entry>
          <file>main.c</file>
@@ -5430,7 +5434,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/tmr2.c</file>
-         <hash>cca8b70e0c7f33e1423dd0f0aa992f5a9346b9ade9816315c57a29669e93f49e</hash>
+         <hash>ecd4f05bd10570c2dc0ca08ef675bbc6e46a724312f4930db19977f04cd8b851</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clock.c</file>
@@ -5450,7 +5454,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/mcc.h</file>
-         <hash>d642cae5fdcfed1832f439d293d975e5434e7aec60f3d81a31e6dfe821229745</hash>
+         <hash>01f8a87ff82c6dbddd605cb1d0c719d84a404be8531398768ae45ea6a9113337</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/system.h</file>
@@ -5469,12 +5473,12 @@
          <hash>728d67906242f7c30666c0feb4b1b0429a65666c73b6da795316ebf7405784ec</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files/pin_manager.c</file>
-         <hash>b7e40525b6a44d4c5b9b1fa40a8235ed571a23ea619351394c6caf1ff3c4fb4a</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files/i2c1.c</file>
          <hash>2a29cb5bafbda90b28c9b4831617e03e3982f4445a83da65ec2cf51bd27c1d9f</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files/pin_manager.c</file>
+         <hash>d9381bf555de0cc7d4bf2b6e2302cf9c473bf520c46314618a01049502681972</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

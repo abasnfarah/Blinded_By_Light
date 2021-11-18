@@ -47,6 +47,15 @@
 */
 #include "mcc_generated_files/system.h"
 #include "lcd.h"
+#include <string.h>
+#include "asmlib.h"
+volatile unsigned int overflow = 0;
+void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt (  )
+{
+    overflow++;
+    _T2IF = 0;
+}
+
 
 /*
                          Main application
@@ -55,11 +64,49 @@ int main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-
+    lcd_init();
+    unsigned int time;
+    int x = 0;
+    const char *strings[6];
+    strings[0] = "1";
+    strings[1] = "2";
+    strings[2] = "3";
+    strings[3] = "4";
+    strings[4] = "5";
+    strings[5] = "6";
+    strings[6] = "7";
+    strings[7] = "8";
+    strings[8] = "9";
+    strings[9] = "10";
+    
     while (1)
     {
-        
         // Add your application code
+        int input = PORTBbits.RB11;
+        if(input){
+            delay(50);
+            x++;
+            //time = (overflow * PR2) + TMR2;
+            //TMR2 = 0;
+            //overflow = 0;
+            
+            // Prescaler = 256, for 0.25 sec time must be 15625
+            //if ( time < 15625){
+            //    x++;
+            //}
+        }
+        if (overflow >= 2){
+            //x++;
+        }
+        if(x >9 ){
+            x = 0;
+        }
+        lcd_setCursor(0,0);
+        lcd_printStr(strings[x]);
+        //x++;
+        
+        //lcd_cmd(0b00011100);
+        delay(50);
     }
 
     return 1;

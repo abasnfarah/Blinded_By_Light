@@ -22,3 +22,6 @@ _wait_100us: ; 817 cycles = 50 microseconds *2 = 100 microseconds
     repeat #1628 ; 1 cycle
     nop		 ; 1 cycle
     return ; 3 cycle
+
+
+
