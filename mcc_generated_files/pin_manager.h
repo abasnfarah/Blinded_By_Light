@@ -494,6 +494,152 @@
 #define IO_RB15_SetDigitalOutput() (_TRISB15 = 0)
 /**
   @Summary
+    Sets the GPIO pin, RB6, high using LATB6.
+
+  @Description
+    Sets the GPIO pin, RB6, high using LATB6.
+
+  @Preconditions
+    The RB6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB6 high (1)
+    SDO1_SetHigh();
+    </code>
+
+*/
+#define SDO1_SetHigh()          (_LATB6 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RB6, low using LATB6.
+
+  @Description
+    Sets the GPIO pin, RB6, low using LATB6.
+
+  @Preconditions
+    The RB6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB6 low (0)
+    SDO1_SetLow();
+    </code>
+
+*/
+#define SDO1_SetLow()           (_LATB6 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RB6, using LATB6.
+
+  @Description
+    Toggles the GPIO pin, RB6, using LATB6.
+
+  @Preconditions
+    The RB6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB6
+    SDO1_Toggle();
+    </code>
+
+*/
+#define SDO1_Toggle()           (_LATB6 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB6.
+
+  @Description
+    Reads the value of the GPIO pin, RB6.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB6
+    postValue = SDO1_GetValue();
+    </code>
+
+*/
+#define SDO1_GetValue()         _RB6
+/**
+  @Summary
+    Configures the GPIO pin, RB6, as an input.
+
+  @Description
+    Configures the GPIO pin, RB6, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB6 as an input
+    SDO1_SetDigitalInput();
+    </code>
+
+*/
+#define SDO1_SetDigitalInput()  (_TRISB6 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RB6, as an output.
+
+  @Description
+    Configures the GPIO pin, RB6, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB6 as an output
+    SDO1_SetDigitalOutput();
+    </code>
+
+*/
+#define SDO1_SetDigitalOutput() (_TRISB6 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RB7, high using LATB7.
 
   @Description
