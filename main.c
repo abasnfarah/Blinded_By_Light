@@ -53,7 +53,7 @@
 #include <math.h>
 
 volatile unsigned int overflow = 0;
-volatile double current = 2.34567;
+volatile double current = 0.0;
 volatile double tareOffset = 0.0;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt (  )
 {
@@ -91,13 +91,13 @@ int intToStr(int x, char str[], int d)
 }
   
 // Converts a floating-point/double number to a string.
-void ftoa(float n, char* res, int afterpoint)
+void ftoa(double n, char* res, int afterpoint)
 {
     // Extract integer part
     int ipart = (int)n;
   
     // Extract floating part
-    float fpart = n - (float)ipart;
+    double fpart = n - (double)ipart;
   
     // convert integer part to string
     int i = intToStr(ipart, res, 0);
@@ -123,32 +123,51 @@ int main(void)
     SYSTEM_Initialize();
     lcd_init();
     unsigned int time;
-    int x = 0;
-    const char *strings[6];
-    strings[0] = "1";
-    strings[1] = "2";
-    strings[2] = "3";
-    strings[3] = "4";
-    strings[4] = "5";
-    strings[5] = "6";
-    strings[6] = "7";
-    strings[7] = "8";
-    strings[8] = "9";
-    strings[9] = "10";
     char output[20];
-    
+    PORTBbits.RB15 = 0;
     //sprintf(output, 20,"%f",current - tareOffset);
-    float n = (float) (current);
-    ftoa(n, output, 6);
+    //ftoa(n, output, 6);
     
     while (1)
     {
         // Add your application code
         int input = PORTBbits.RB11;
+        
+        // Capture SPI value from ADC
+       
+        uint16_t data1 = 0x38FF;
+        uint16_t data2 = 0xFFFF;
+        data1 = SPI1_Exchange16bit(data1);
+        data2 = SPI1_Exchange16bit(data2);
+        long int raw = (data1 & 0x00FF) << 16;
+        raw += data2;
+        long int data = (data1 & 0x0001) << 16;
+        data += data2;
+        // Convert HEX value to doubland binary using lookup table
+        double n;
+        current = (double) data;
+        n = current - tareOffset;
+        // test button input for tare.
+        // send UART
+        int i;
+        for(i = 23; i >= 0; i--){
+            if ((data2 >> i) % 2){
+                UART1_Write('1');
+            }else{
+                UART1_Write('0');
+            }
+        }
+        
+        UART1_Write('\n');
+        UART1_Write('\r');
+
+        // send to display
         if(input){
+            
             delay(50);
-            tareOffset = 0.04567;
-            float n = (float) (current - tareOffset);
+            tareOffset = current;
+            n = current - tareOffset;
+            n = (double) data2;
             ftoa(n, output, 6);
             //char output[50];
             //sprintf(output, 50, "%f", num);
@@ -162,19 +181,18 @@ int main(void)
             //    x++;
             //}
         }
-        if (overflow >= 2){
-            //x++;
-        }
-        if(x >9 ){
-            x = 0;
-        }
+       
         //sprintf(output, 8,"%f",current - tareOffset);
         lcd_setCursor(0,0);
-        lcd_printStr(output);
+        if(n<0){
+            lcd_printStr("OL");
+        } else{
+            lcd_printStr(output);
+        }
         //x++;
         
         //lcd_cmd(0b00011100);
-        delay(50);
+        //delay(1000);
     }
 
     return 1;
